@@ -1,5 +1,6 @@
 package dev.alpas.inertia
 
+import dev.alpas.config
 import dev.alpas.http.HttpCall
 import dev.alpas.http.RequestableCall
 import dev.alpas.make
@@ -12,7 +13,7 @@ val RequestableCall.isInertia: Boolean
 
 fun HttpCall.inertiaRender(component: String, props: Map<String, Any> = emptyMap()) {
     val inertiaBag = shared("inertia") as InertiaBagBase
-    val inertiaValues = inertiaBag()
+    val inertiaValues = inertiaBag(this)
     val combinedProps = props + inertiaValues
 
     val version = make<Mix>().version
@@ -22,6 +23,7 @@ fun HttpCall.inertiaRender(component: String, props: Map<String, Any> = emptyMap
         addHeader("Vary" to "Accept", "X-Inertia" to "true")
         replyAsJson(page)
     } else {
-        render("welcome", "page" to page)
+        val config = config<InertiaConfig>()
+        render(config.rootView, "page" to page)
     }
 }
