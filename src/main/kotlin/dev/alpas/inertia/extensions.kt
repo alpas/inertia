@@ -11,13 +11,13 @@ val RequestableCall.isInertia: Boolean
         return header("X-Inertia")?.toBoolean() ?: false
     }
 
-fun HttpCall.inertiaRender(component: String, props: Map<String, Any> = emptyMap()) {
+fun HttpCall.inertiaRender(component: String, props: Map<String, Any?> = emptyMap()) {
     val inertiaBag = shared("inertia") as InertiaBagBase
     val inertiaValues = inertiaBag(this)
     val combinedProps = props + inertiaValues
 
     val version = make<Mix>().version
-    val page = mapOf("component" to component, "props" to combinedProps, "url" to uri, "version" to version)
+    val page = mapOf("component" to component, "props" to combinedProps, "url" to fullUrl, "version" to version)
 
     if (isInertia) {
         addHeader("Vary" to "Accept", "X-Inertia" to "true")
