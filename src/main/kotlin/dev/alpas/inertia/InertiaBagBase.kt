@@ -11,7 +11,13 @@ open class InertiaBagBase {
         val flash = call.session.userFlashBag()
         val csrfToken = call.session.csrfToken()
 
-        return mapOf("errors" to errors, "flash" to flash, "auth" to auth, "csrf_token" to csrfToken, "extras" to extras)
+        return mapOf(
+            "errors" to errors,
+            "flash" to flash,
+            "auth" to auth,
+            "csrf_token" to csrfToken,
+            "extras" to extras
+        )
     }
 
     protected open fun userAsInertiaPayload(call: HttpCall): Map<String, Any?> {
