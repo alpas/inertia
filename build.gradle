@@ -15,7 +15,7 @@ repositories {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 //    compileOnly "dev.alpas:framework:$alpas_version"
-    compileOnly 'com.github.alpas:alpas:b84f082920dc462'
+    compileOnly 'com.github.alpas:alpas:1b09e50a8d5'
 }
 
 compileKotlin {

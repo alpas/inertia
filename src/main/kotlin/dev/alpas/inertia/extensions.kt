@@ -17,7 +17,7 @@ fun HttpCall.inertiaRender(component: String, props: Map<String, Any?> = emptyMa
     val combinedProps = props + inertiaValues
 
     val version = make<Mix>().version
-    val page = mapOf("component" to component, "props" to combinedProps, "url" to fullUrl, "version" to version)
+    val page = mapOf("component" to component, "props" to combinedProps, "url" to fullUri, "version" to version)
 
     if (isInertia) {
         addHeader("Vary" to "Accept", "X-Inertia" to "true")
